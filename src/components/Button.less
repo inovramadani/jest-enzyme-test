@@ -1,0 +1,22 @@
+@orange: #C65C12;
+
+button {
+	margin-left: 10px;
+	margin-right: 10px;
+	border-radius: 25px;
+	padding: 5px 20px;
+	color: @orange;
+	background: none;
+	border: 2px solid @orange;
+
+	&:hover {
+		background: @orange;
+		color: white;
+		cursor: pointer;
+		transition: 0.2s;
+	}
+
+	&:focus, &:active {
+		outline: none !important;
+	}
+}
