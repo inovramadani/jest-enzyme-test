@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import Button from '../components/Button'
 import './App.less'
 import logo from '../../public/image/forstek_logo.png'
@@ -10,26 +9,29 @@ export default class App extends Component {
 		super()
 
 		this.state = {
-			text: ''
+			text: '',
+			counter: 0,
 		}
 	}
 
 	render() {
 		return (
-			<div className='container'>
-				<div className='barrier'>
-					<div className='welcome-words'>
+			<div className="container">
+				<div className="barrier">
+					<div className="welcome-words">
 						<img src={logo} />
 						<p>Hi, welcome to Forstek!</p>
 						<p>What can we do for you?</p>
 					</div>
 					<div className='cta-button'>
-						<Button text='create website' onClick={() => alert('hello!')}/>
-						<Button text='visit App Congress' onClick={this.visitAppCongress.bind(this)}/>
-						<Button text='market research' onClick={this.visitMarketResearch.bind(this)}/>
-						<Button text='join Forstek' onClick={this.joinForstek.bind(this)}/>
+						<Button id="btn-1" text="create website" onClick={() => alert('hello!')}/>
+						<Button id="btn-2" text="visit App Congress" onClick={this.visitAppCongress.bind(this)}/>
+						<Button id="btn-3" text="market research" onClick={this.visitMarketResearch.bind(this)}/>
+						<Button id="btn-4" text="join Forstek" onClick={this.joinForstek.bind(this)}/>
 					</div>
-					<p>{this.state.text}</p>
+					<a href="https://www.google.com">Go to google</a>
+					<p className="text">{this.state.text}</p>
+					<p className="counter">{this.state.counter}</p>
 				</div>
 			</div>
 		)
@@ -40,13 +42,10 @@ export default class App extends Component {
 	}
 
 	visitMarketResearch () {
-		this.setState({ text: 'visit market research' })
+		window.location = '#market-research'
 	}
 
 	joinForstek () {
-		this.setState({ text: 'join forstek' })
+		this.setState({ counter: this.state.counter + 1 })
 	}
 }
-
-const app = document.getElementById('app');
-ReactDOM.render(<App />, app);
