@@ -1,10 +1,12 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { shallow, mount } from 'enzyme'
+import axios from 'axios'
 
 import App from './App'
 
 jest.mock('react-dom')
+jest.mock('axios')
 
 describe('Testing App component', function() {
   it('should render without throwing an error', function() {
@@ -59,4 +61,24 @@ describe('Testing App component', function() {
   	expect(wrapper.state().counter).toEqual(3)
   	expect(wrapper.find('.counter').text()).toBe('3')
   })
+
+  it('fetch data on #componentDidMount', () => {
+	  const resp = {owner: {login: 'invoramadani'}}
+	  axios.get.mockResolvedValue(resp)
+	  // axios.get.mockImplementation(() => Promise.resolve(resp))
+	  function callback(data) {
+	    expect(data).toEqual(resp)
+	    done()
+	  }
+
+  	const wrapper = shallow(<App />)
+	  wrapper.instance().loadData()
+	  	.then(res => callback(res))
+	  	.catch(err => console.log('error in testing to get data'))
+	})
+
+	it('component add method test', () => {
+		const wrapper = shallow(<App />)
+		expect(wrapper.instance().add(1,3)).toBe(4)
+	})
 })

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+
 import Button from '../components/Button'
 import './App.less'
 import logo from '../../public/image/forstek_logo.png'
@@ -32,9 +34,32 @@ export default class App extends Component {
 					<a href="https://www.google.com">Go to google</a>
 					<p className="text">{this.state.text}</p>
 					<p className="counter">{this.state.counter}</p>
+					<p className="owner">{this.state.owner ? this.state.owner.login : 'empty'}</p>
 				</div>
 			</div>
 		)
+	}
+
+	componentWillMount() {
+		const data = this.loadData()
+		this.setState({
+			owner: data.owner
+		})
+	}
+
+	add (a, b) {
+		return a + b
+	}
+
+	loadData () {
+		return new Promise((resolve, reject) => {
+			return axios.get('https://api.github.com/users/inovramadani/repos')
+			.then(res => {
+				return resolve({owner: {login: res.data[0].owner.login}})
+			})
+			.catch(error => reject(console.log('Error: no data returned')))
+		})
+		.catch(error => console.log('Promise second error'))
 	}
 
 	visitAppCongress() {
