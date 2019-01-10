@@ -16,6 +16,6 @@ describe('A suite', function() {
 
   it('should have a text on the button', function() {
   	const button = shallow(<Button text="I am button"/>)
-  	expect(button.find('.btn').text()).toEqual('I am button')
+  	expect(button.find('.btn').text()).toBe('I am button')
   })
 })

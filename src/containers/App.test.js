@@ -42,13 +42,13 @@ describe('Testing App component', function() {
 	it('should change state.text to visit app congress', function() {
   	const wrapper = shallow(<App />)
   	wrapper.find('#btn-2').simulate('click')
-  	expect(wrapper.state().text).toEqual('visit app congress')
+  	expect(wrapper.state().text).toBe('visit app congress')
   })
 
 	it('should change window location to #market-research', function() {
   	const wrapper = shallow(<App />)
   	wrapper.find('#btn-3').simulate('click')
-  	expect(window.location.hash).toEqual('#market-research')
+  	expect(window.location.hash).toBe('#market-research')
   })
 
   it('should add state.counter', function() {
@@ -57,6 +57,6 @@ describe('Testing App component', function() {
   	wrapper.find('#btn-4').simulate('click')
   	wrapper.find('#btn-4').simulate('click')
   	expect(wrapper.state().counter).toEqual(3)
-  	expect(wrapper.find('.counter').text()).toEqual('3')
+  	expect(wrapper.find('.counter').text()).toBe('3')
   })
 })
