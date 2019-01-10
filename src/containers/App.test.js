@@ -51,13 +51,6 @@ describe('Testing App component', function() {
   	expect(window.location.hash).toEqual('#market-research')
   })
 
-  it('should render correctly', () => {
-    expect(render).toHaveBeenCalledWith(
-      <Link title="mockTitle" url="mockUrl" />, 'element-node'
-    );
-    expect(render).toHaveBeenCalledTimes(1);
-  });
-
   it('should add state.counter', function() {
   	const wrapper = shallow(<App />)
   	wrapper.find('#btn-4').simulate('click')
